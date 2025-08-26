@@ -33,9 +33,6 @@
   (Transmission "Talking to the Hardware" "August 15-25, 2025" "
     Finally! My DeepComputing DC-ROMA for Framework Laptop 13 arrived!
     Unfortunately that's where the joy ends, as just getting this thing to speak to me was incredibly difficult.
-    It didn't help that I was traveling to London for DConf and didn't purchase a UK outlet plug so my laptop died 4 days into the trip.
-
-    I came against quite a few problems just getting the RISC-V board to say hello to me.
     This is probably best expressed as a Q&A section.
 
     Q. Which dip-switch choice allows you to boot using UART?
@@ -48,7 +45,7 @@
     A. SBU1 for transmit, SBU2 for receive.
 
     Q. Do I need a special USB-C cable?
-    A. Yes. I used a USB-C 3.2 Gen 2 cable because my dinky Apple charger didn't have SBU1/2 connected.
+    A. Yes. I used a USB-C 3.2 cable because my dinky Apple charger didn't have SBU1/2 connected.
 
     Q. Should I order the DeepComputing Debug Expansion Card?
     A. Probably. My janky setup in London was USB-C to breakout board to UART controller to USB-A to USB-C.
@@ -57,7 +54,7 @@
     A. XMODEM-1K. If it spams the letter 'C' at you then it's listening.
 
     Q. What serial settings are used?
-    A. 3.3V TX/RX, 115200 baud, 8N1
+    A. 3.3V TX/RX, 115200 baud, 8N1.
 
     Q. What file format does the UART receiver expect?
     A. StarFive Secondary Program Loader (SPL). It's a simple header attached to your RISC-V payload.
@@ -75,3 +72,4 @@
 	</div>
 </body>
 </html>
+
