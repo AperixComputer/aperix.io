@@ -3,58 +3,140 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Aperix</title>
+	<title>Aperix LLC</title>
 	<style>
-		@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 		body {
-			font-family: "Press Start 2P", monospace;
-			background-color: rgb(32, 9, 0);
-			color: orange;
-			text-shadow: orangered 1px 0 7px;
+			font-family: monospace;
+			font-size: 2em;
+			background-color: rgb(0, 22, 122);
+			color: white;
+			text-shadow: blue 1px 0 7px;
 		}
 
 		a {
-			color: orange;
-		}
-
-		a:hover {
-			font-style: italic;
+			color: white;
 		}
 
 		div {
 			text-align: center;
-			padding-top: 140px;
+		}
+
+		code {
+			text-align: left;
+			display: inline-block;
+			margin: 10px;
+			padding: 0 15px;
+			background-color: blueviolet;
+			border-radius: 10px;
 		}
 	</style>
 </head>
 <body>
 	<div>
-		<h1>Aperix</h1>
+		<h1>Aperix LLC</h1>
 		<p>Coming soon to a planet near you.</p>
-		<p><a href="log.html">View Log</a></p>
 	</div>
-	<div>
+	<div style="padding-top: 140px;">
 		<h2>Buy your hardware now:</h2>
 		<p><a href="https://frame.work/products/deep-computing-risc-v-mainboard">DeepComputing RISC-V Mainboard I: $200</a></p>
 		<p><a href="https://store.deepcomputing.io/products/dc-roma-ai-pc-risc-v-mainboard-ii-for-framework-laptop-13?variant=50950609010852">DeepComputing RISC-V Mainboard II: $350</a></p>
 		<p><a href="https://frame.work/products/framework-laptop-13-chassis-p6100">Framework Laptop 13 Chassis: $400</a></p>
 	</div>
-	<div>
-		<h2>Goals: Operating System</h2>
-		<p>Speed: Never forget that a 4-core 1.5GHz processor is incredibly powerful.</p>
-		<p>Simplicity: You can comprehend the entire system in one night.</p>
-		<p>Interactivity: The system should know what you want to do before you do.</p>
-		<p>Self-Contained: All components are made in-house, in one cohesive language.</p>
-		<p>Modularity: Remove any piece of code or program you don't want.</p>
-		<p>Documented: If you don't understand something, the system will explain it.</p>
+	<div style="padding-top: 140px;">
+		<h2>Aperix OS</h2>
+		<p>Performance-Oriented Desktop Operating System.</p>
+		<p>RISC-V first, then x86_64, ARM64.</p>
 	</div>
-	<div>
-		<h2>Goals: Language</h2>
-		<p>Grounded: Programming the underlying machine is paramount.</p>
-		<p>Full-stack: From bit-banging to the user interface shell, all-in-one.</p>
-		<p>Expressive: C-style memory layout with a modern type system.</p>
-		<p>Minimalistic: Manual memory management is the only kind provided.</p>
+	<div style="padding-top: 140px;">
+		<h2>Aperion</h2>
+		<p>Kernel? Shell? One Language.</p>
+		<div style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
+<code><pre>
+// "__" means compiler builtin
+
+Basic = __import!() // uses __name
+i32 = __type!(enum.INTEGER, bits=32)
+
+x = 5
+y = 10
+
+f = (z: i32) i32 {
+  return x + y + z
+}
+
+Basic.assert!(f!12 == 27)
+</pre></code>
+<code><pre>
+early_return = () {
+  if x == 6 return {} // void value
+
+  y := 7 // reassignment
+  __parent.y := 8 // explicit scope
+
+  // nested scopes
+  {
+    q = f!(x + 10)
+    using Basic
+    assert!(q == 30)
+  }
+}
+</pre></code>
+<code><pre>
+Compiler = __import!()
+Compiler.compile_to_file!(
+  entry=early_return,
+  name="does_nothing",
+  optimize=enum.NONE,
+)
+
+// builtins are regular values
+import = __import
+
+// shadowed variables (new types)
+x = import!"some_module"
+y = import!()
+</pre></code>
+<code><pre>
+bool = __type!(enum.BOOL)
+true = 1.(bool)
+false = 0.(bool)
+
+toggle = false
+
+w = (y: ^i32, r: []i32) i32 {
+  if y.^ == 42 toggle := toggle.!
+  sum = 0
+  for r {
+    sum += it + it_index
+  }
+  return sum
+}
+</pre></code>
+<code><pre>
+// defined in itself.
+
+return = (expr=__expr) #(macro=true) {
+  __caller.__return!(expr)
+}
+
+while = (cond=__expr, body=__expr) #(macro=true) {
+  __loop!{
+    __if!(cond.!, __break!())
+    __mixin!body
+  }
+}
+
+for = (iter=__expr, body=__expr) #(macro=true) {
+  it_index = 0
+  __loop!{
+    __if!(it_index >= iter.count, __break!())
+    it = iter.[it_index]
+    __mixin!body
+    it_index += 1
+  }
+}
+</pre></code>
+		</div>
 	</div>
 </body>
 </html>
-
